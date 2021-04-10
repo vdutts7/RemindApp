@@ -31,7 +31,7 @@ const MainStackNavigator = () => {
     <Stack.Navigator screenOptions={screenOptionStyle}>
      
       <Stack.Screen name="Home" component={HomeScreen} />
-      <Stack.Screen name="About" component={RemRun} />
+      <Stack.Screen name="Add" component={RemRun} />
     </Stack.Navigator>
   );
 }
@@ -39,7 +39,7 @@ const MainStackNavigator = () => {
 const ContactStackNavigator = () => {
   return (
     <Stack.Navigator screenOptions={screenOptionStyle}>
-      <Stack.Screen name="Add a Reminder" component={RemRun} />
+      <Stack.Screen name="Add" component={RemRun} />
     </Stack.Navigator>
   );
 }

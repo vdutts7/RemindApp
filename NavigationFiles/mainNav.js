@@ -24,7 +24,7 @@ const LoginPageNav = () => {
   return(
     <Stack.Navigator>
        <Stack.Screen name="Login Page" component={Login} />
-       <Stack.Screen name="Remind" component={DrawerNavigator} 
+       <Stack.Screen name="Add" component={DrawerNavigator} 
        options={({ navigation }) => ({
             title: 'Home Page',
             headerLeft: null,

@@ -2,11 +2,22 @@ import React, { useState } from 'react';
 import { Button, Text, View, title, StyleSheet } from 'react-native';
 import { ScrollView, TextInput } from 'react-native-gesture-handler';
 
-import { BinarySearchTree} from "./BST"
+
 import AsyncStorage from '@react-native-community/async-storage'
 
 
-
+const _storeData = async () => {
+  try {
+    await AsyncStorage.setItem(
+      '@MySuperStore:key',
+      'I like to save it.'
+    );
+    alert("It works")
+  } catch (error) {
+    // Error saving data
+    alert("It has a problem with the code")
+  }
+};
   
 
 const saveData = async (Values) => {
@@ -42,7 +53,7 @@ const readData = async () => {
   return Data;
 }
 
-const RemRun = ({ navigation }, i) => {
+const RemRun = ({ navigation }) => {
   const [name, setText] = useState('');
   const [discription, setDis] = useState('');
   const [Goals, setGoals] = useState('');
@@ -76,14 +87,14 @@ const RemRun = ({ navigation }, i) => {
       <Button
         title="Add Workout to List"
         onPress={() => {
-          var Node = {
+          const Node = {
             title: name,
             discription: discription,
             goals: Goals
           
           };
-          saveData(Node)
-          
+          //saveData(Node)
+          _storeData()
           navigation.navigate('Home')
         }
         }

@@ -23,7 +23,7 @@ const Tab = createBottomTabNavigator();
 const BottomTabNavigator = () => {
   return (
     <Tab.Navigator>
-      <Tab.Screen name="Home" component={HomeScreen}
+      {/* <Tab.Screen name="Home" component={HomeScreen}
 
         options={({ navigation }) => ({
           title: 'Main',
@@ -36,9 +36,9 @@ const BottomTabNavigator = () => {
               color="#000000"
             />
           ),
-        })} />
+        })} /> */}
 
-      <Tab.Screen name="Remind Me" component={RemRun}
+      <Tab.Screen name="Add" component={RemRun}
         options={({ navigation }) => ({
           title: 'Add',
           headerLeft: null,

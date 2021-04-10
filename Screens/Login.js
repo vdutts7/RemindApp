@@ -10,12 +10,24 @@ import { color } from 'react-native-reanimated';
 
 
 //const Tab = createBottomTabNavigator();
-
+const _storeData = async () => {
+  try {
+    await AsyncStorage.setItem(
+      '@MySuperStore:key',
+      'I like to save it.'
+    );
+    alert("It works")
+  } catch (error) {
+    // Error saving data
+    alert("It has a problem with the code")
+  }
+};
+   
 const Login = ({ navigation }) => {
   const [name, setText] = useState('');
   const [Password, setPas] = useState('');
 
-
+  _storeData
   return (
     <View style={styles.background}>
 
@@ -42,7 +54,7 @@ const Login = ({ navigation }) => {
         onPress={() => {
           console.log(name);
           console.log(Password);
-          navigation.navigate('Remind')
+          navigation.navigate('Add')
         }
         }
       //color
