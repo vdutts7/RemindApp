@@ -17,35 +17,30 @@ import { createMaterialBottomTabNavigator } from '@react-navigation/material-bot
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { setStatusBarNetworkActivityIndicatorVisible } from 'expo-status-bar';
 
-const readData = async () => {
-  const Data = null; 
+// fetch the data back asyncronously
+const _retrieveData = async () => {
   try {
-    Data = await AsyncStorage.getItem('@MySuperStore:key')
-    console.log(Data)
-    Data = JSON.parse()
-    console.log(Data)
-    console.log("Hi1")
-    alert('Oi')
-  } catch (e) {
-    console.log("Hi")
-    alert('Failed to fetch the data from storage12')
+      const value = await AsyncStorage.getItem('name');
+      if (value !== null) {
+          // Our data is fetched successfully
+          console.log(value);
+      }
+  } catch (error) {
+      // Error retrieving data
   }
-  return Data;
+}
+
+   // create a function that saves your data asyncronously
+const _storeData = async () => {
+    try {
+        await AsyncStorage.setItem('name', 'John1');
+    } catch (error) {
+        alert("Error saving data")
+    }
 }
 
 
-const _storeData = async () => {
-  try {
-    await AsyncStorage.setItem(
-      '@MySuperStore:key',
-      'I like to save it.'
-    );
-    alert("It works")
-  } catch (error) {
-    // Error saving data
-    alert("It has a problem with the code")
-  }
-};
+
 
 const HomeScreen = ({ navigation }) => {
   const [todos, setTodos] = useState([
@@ -53,10 +48,10 @@ const HomeScreen = ({ navigation }) => {
       {text: 'create an app', key: '2'},
       {text: 'play on the switch', key: '3'}
   ]);
-  _storeData
-  const [name, setName] = useState()
+ // _storeData
+  var [name, setName] = useState()
 
-  setName(readData)
+  //setName(readData)
   const pressHandler = (key) => {
     setTodos((prevTodos) => {
       return prevTodos.filter(todo => todo.key !=key)
@@ -79,7 +74,10 @@ const HomeScreen = ({ navigation }) => {
     }
 
   }
-
+  _storeData
+  if(_retrieveData != null){
+    name = setName(_retrieveData)
+  }
   return (
     // <Sandbox />
     <TouchableWithoutFeedback onPress={() => {
@@ -99,7 +97,11 @@ const HomeScreen = ({ navigation }) => {
               )}
             />
           </View>
-          <Button title={"Hello"}onPress = {() => navigation.navigate("Add")}></Button>
+          <Button title={"Hello"}onPress = {() => {
+            _storeData
+            navigation.navigate("Add")
+            
+          }}></Button>
           </View>
     </View>
     </TouchableWithoutFeedback>

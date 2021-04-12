@@ -3,9 +3,9 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 
-import HomeScreen from "../Screens/Home";
 import RemRun from "../Screens/RemRun";
 import Login from "../Screens/Login";
+import mainPage from "../Screens/MainPage";
 
 
 const Stack = createStackNavigator();
@@ -30,7 +30,7 @@ const MainStackNavigator = () => {
   return (
     <Stack.Navigator screenOptions={screenOptionStyle}>
      
-      <Stack.Screen name="Home" component={HomeScreen} />
+      <Stack.Screen name="Home" component={mainPage} />
       <Stack.Screen name="Add" component={RemRun} />
     </Stack.Navigator>
   );
@@ -44,4 +44,4 @@ const ContactStackNavigator = () => {
   );
 }
 
-export { MainStackNavigator, ContactStackNavigator };
+export default { MainStackNavigator, ContactStackNavigator };

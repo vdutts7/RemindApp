@@ -5,36 +5,28 @@ import { ScrollView, TextInput } from 'react-native-gesture-handler';
 
 import AsyncStorage from '@react-native-community/async-storage'
 
+   // create a function that saves your data asyncronously
+ const  _storeData = async () => {
+    try {
+        await AsyncStorage.setItem('name', 'John');
+    } catch (error) {
+        alert("Error saving data")
+    }
+}
 
-const _storeData = async () => {
-  try {
-    await AsyncStorage.setItem(
-      '@MySuperStore:key',
-      'I like to save it.'
-    );
-    alert("It works")
-  } catch (error) {
-    // Error saving data
-    alert("It has a problem with the code")
-  }
-};
   
 
-const saveData = async (Values) => {
-  const STORAGE_KEY1 = "@newKeyName";
-
+// fetch the data back asyncronously
+const _retrieveData = async () => {
   try {
-    await AsyncStorage.setItem(STORAGE_KEY1, JSON.stringify(Values))
-    //const userAge = AsyncStorage.getItem(STORAGE_KEY)
-   // console.log(userAge)
-   // userAge = JSON.parse(userAge.title)
-    
-    console.log("im")
-    alert('Data successfully saved')
-  } catch (e) {
-    alert('Failed to save the data to the storage')
+      const value = await AsyncStorage.getItem('name');
+      if (value !== null) {
+          // Our data is fetched successfully
+          console.log(value);
+      }
+  } catch (error) {
+      // Error retrieving data
   }
-
 }
 
 const readData = async () => {

@@ -7,7 +7,8 @@ import {Button} from 'react-native';
 import HomeScreen from "../Screens/Home";
 import RemRun from "../Screens/RemRun";
 import Login from "../Screens/Login";
-import DrawerNavigator from "./DrawerNav"
+import  MainStackNavigator from "./StackNavigator"
+import mainPage from "../Screens/MainPage"
 
 
 const Stack = createStackNavigator();
@@ -24,7 +25,7 @@ const LoginPageNav = () => {
   return(
     <Stack.Navigator>
        <Stack.Screen name="Login Page" component={Login} />
-       <Stack.Screen name="Add" component={DrawerNavigator} 
+       <Stack.Screen name="Add" component={mainPage} 
        options={({ navigation }) => ({
             title: 'Home Page',
             headerLeft: null,
