@@ -3,6 +3,8 @@ import React, {useState} from 'react';
 import { Keyboard, KeyboardAvoidingView, StyleSheet, Text, View, TextInput, TouchableOpacity, TouchableOpacityBase } from 'react-native';
 import Task from '../Components/Task'
 
+
+
 export default function mainPage() {
   const [task, setTask] = useState();
   const [taskItems, setTaskItems] = useState([]);
