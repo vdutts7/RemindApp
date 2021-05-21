@@ -32,14 +32,35 @@
 
 import { StatusBar } from 'expo-status-bar';
 import React, {useState} from 'react';
-import { Keyboard, KeyboardAvoidingView, StyleSheet, Text, View, TextInput, TouchableOpacity, TouchableOpacityBase } from 'react-native';
+import { Keyboard, KeyboardAvoidingView, StyleSheet, Text, View, TextInput, TouchableOpacity, ScrollView, TouchableOpacityBase } from 'react-native';
 import Task from '../Components/Task'
 import { useTheme } from '@react-navigation/native';
-
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 export default function mainPage() {
+  getData
+  const storeData = async (value) => {
+    try {
+      await AsyncStorage.setItem('@storage_Key', value)
+      console.log("IT WORKS")
+    } catch (e) {
+      // saving error
+      console.log(e)
+    }
+  }
+
+  const getData = async () => {
+    try {
+      const value = await AsyncStorage.getItem('@storage_Key')
+      if(value !== null) {
+        // value previously stored
+      }
+      console.log("IT WORKS AS WELL")
+    } catch(e) {
+      console.log(e)
+    }
+  }
   
   const { colors } = useTheme();
   const theme = useTheme();
@@ -61,10 +82,7 @@ export default function mainPage() {
 
   return (
     <View style={styles.container}>
-      <View style={styles.taskWrapper}>
-
-        <Text style={styles.sectionTitle}>Today's tasks</Text>
-        <View style={styles.items}>
+        <ScrollView style={styles.items}>
           {
             taskItems.map((item, index) => {
               return (
@@ -75,31 +93,26 @@ export default function mainPage() {
             })
           }
 
-        </View>
-
-      </View>
-
+        </ScrollView>
 
       {/* Write a task here*/}
-      <KeyboardAvoidingView
-        behavior={Platform.OS === "ios" ? "padding" : "height"}
-        style={styles.writeTaskWrapper}
-        >
-          <TextInput style={styles.input} placeholder={'Write a task'} value={task} onChangeText={text => setTask(text)} />
-
-          <TouchableOpacity onPress={ () => handleAddTask()}>
-            <View styles={styles.addWrapper}>
-              <Text style={styles.addText}>+</Text>
-            </View>
-          </TouchableOpacity>
-
-        </KeyboardAvoidingView>
-
-
+      <View>
+      
+        
     </View>
-
-
-   
+    <View style={styles.buttonStyle}>
+    <TextInput style={styles.input} placeholder={'Write a task'} value={task} onChangeText={text => setTask(text)} />
+    
+    <TouchableOpacity style={styles.buttonStyle} onPress={ () => {
+            handleAddTask()
+            storeData(task)
+            
+          }}>
+            <Text style={styles.addWrapper}>+</Text>
+          </TouchableOpacity>
+    </View>
+    
+    </View>
   );
 }
 
@@ -118,6 +131,13 @@ const styles = StyleSheet.create({
   items: {
     marginTop: 30,
   }, 
+  bStyle: {
+    marginTop: 30,
+  }, 
+  buttonStyle: {
+    flexDirection: "row",
+    paddingLeft: 30,
+  }, 
   writeTaskWrapper: {
     position: 'absolute',
     bottom: 60,
@@ -133,6 +153,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderRadius: 60,
     borderColor: '#c0c0c0',
+    flexDirection: 'row',
     borderWidth: 1,
   },
   addWrapper: {
@@ -140,10 +161,12 @@ const styles = StyleSheet.create({
     height: 60,
     backgroundColor: '#fff',
     borderRadius: 60,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: 'flex-end',
+    alignItems: 'flex-end',
     borderColor: '#c0c0c0',
     borderWidth: 1,
+    paddingLeft: 27,
+    padding: 20,
   },
 });
 

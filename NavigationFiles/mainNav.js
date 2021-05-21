@@ -24,21 +24,22 @@ const screenOptionStyle = {
 const LoginPageNav = () => {
   return(
     <Stack.Navigator>
-       <Stack.Screen name="Login Page" component={Login} />
+       {/* <Stack.Screen name="Login Page" component={Login} /> */}
        <Stack.Screen name="Add" component={mainPage} 
        options={({ navigation }) => ({
-            title: 'Home Page',
+            title: 'To-do List',
             headerLeft: null,
 
             headerStyle: { backgroundColor: '#ff9a8d' },
-            headerRight: () => (
-              <Button
-                onPress={() => navigation.navigate('Login Page')}
-                title="LogOff    "
-                color="#000000"
-              />
-            ),
-          })}/>
+            // headerRight: () => (
+            //   <Button
+            //     onPress={() => navigation.navigate('Login Page')}
+            //     title="LogOff    "
+            //     color="#000000"
+            //   />
+            // ),
+         })}
+    />
     </Stack.Navigator>
   );
 }

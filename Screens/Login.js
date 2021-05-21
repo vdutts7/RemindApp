@@ -6,7 +6,7 @@ import { ScrollView, TextInput } from 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
 
 import Settings from "./BST"
-import { color } from 'react-native-reanimated';
+
 
 
 //const Tab = createBottomTabNavigator();

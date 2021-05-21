@@ -30,7 +30,9 @@ export function DrawerContent(props) {
 
     return(
         <View style={{flex:1}}>
+          
           <DrawerContentScrollView {...props}>
+          
             <View style={styles.drawerContent}>
                 <View style={styles.userInfoSection}>
                   <View style={{flexDirection:'row', marginTop: 15}}>
@@ -46,27 +48,19 @@ export function DrawerContent(props) {
                     </View>
                   </View>
                   <View style={styles.row}>
-                        <View style={styles.section}>
-                          <Paragraph style={[styles.paragraph, styles.caption]}>100</Paragraph>
-                          <Caption style={styles.caption}>Followers</Caption>
-                        </View>
-                        <View style={styles.section}>
-                          <Paragraph style={[styles.paragraph, styles.caption]}>80</Paragraph>
-                          <Caption style={styles.caption}>Following</Caption>
-                        </View>
                   </View>
                 </View>
-
+                <Text style={styles.preferenceTitle}> Pages</Text>
                 <Drawer.Section style={styles.drawerSection}>
                   <DrawerItem
                     icon={({color, size}) => (
                       <Icon
-                      name="home-outline"
+                      name="clipboard"
                       color={color}
                       size={size}
                       />
                     )}
-                    label="Home"
+                    label="Today"
                     onPress={() => {props.navigation.navigate('Home')}}
                   />
                   <DrawerItem 
@@ -77,24 +71,24 @@ export function DrawerContent(props) {
                       size={size}
                       />
                     )}
-                    label="Profile"
-                    onPress={() => {props.navigation.navigate('Profile')}}
+                    label="Personal"
+                    onPress={() => {props.navigation.navigate('Personal')}}
                   />
                   <DrawerItem 
                     icon={({color, size}) => (
                       <Icon 
-                      name="bookmark-outline" 
+                      name="flag" 
                       color={color}
                       size={size}
                       />
                     )}
-                    label="Bookmarks"
-                    onPress={() => {props.navigation.navigate('BookmarkScreen')}}
+                    label="Important"
+                    onPress={() => {props.navigation.navigate('Important')}}
                   />
                   <DrawerItem 
                     icon={({color, size}) => (
                       <Icon 
-                      name="settings-outline" 
+                      name="grid" 
                       color={color}
                       size={size}
                       />
@@ -102,22 +96,12 @@ export function DrawerContent(props) {
                     label="Settings"
                     onPress={() => {props.navigation.navigate('SettingsScreen')}}
                   />
-                  <DrawerItem 
-                    icon={({color, size}) => (
-                      <Icon 
-                      name="account-check-outline" 
-                      color={color}
-                      size={size}
-                      />
-                    )}
-                    label="Support"
-                    onPress={() => {props.navigation.navigate('SupportScreen')}}
-                  />
                 </Drawer.Section >
-                <Drawer.Section title="Preferences">
+                <Text style={styles.preferenceTitle}> Preferences</Text>
+                <Drawer.Section>
                   <TouchableRipple onPress={() => {toggleTheme()}}>
                     <View style={styles.preference}>
-                      <Text>Dark Theme</Text>
+                      <Text style={styles.preferencesText}>Dark Theme</Text>
                       <View pointerEvents="none">
                         <Switch value={isDarkTheme}/>
                       </View>
@@ -151,7 +135,7 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
   },
   title: {
-    fontSize: 16,
+    fontSize: 20,
     marginTop: 3,
     fontWeight: 'bold',
   },
@@ -183,8 +167,22 @@ const styles = StyleSheet.create({
   },
   preference: {
     flexDirection: 'row',
+    fontWeight: 'bold',
     justifyContent: 'space-between',
+    alignItems: 'center',
     paddingVertical: 12,
     paddingHorizontal: 16,
+  },
+  preferencesText: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingVertical: 12,
+    paddingHorizontal: 16,
+  },
+  preferenceTitle: {
+    fontSize: 16,
+    marginTop: 3,
+    fontWeight: 'bold',
   },
 });

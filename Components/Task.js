@@ -4,10 +4,12 @@ import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
 const Task = (props) => {
     return (
         <View style={styles.item}>
+            
             <View styles={styles.itemLeft}>
-                <TouchableOpacity style={styles.square}></TouchableOpacity>
-                <Text style={styles.itemText}>{props.text}</Text>
+            
+            <TouchableOpacity style={styles.square}></TouchableOpacity>    
             </View>
+            <Text style={styles.itemText}>{props.text}</Text>
             <View style={styles.circular}></View>
         </View>
     )
@@ -26,7 +28,7 @@ const styles = StyleSheet.create({
     },
     itemLeft: {
         flexDirection: 'row',
-        alignItems: 'center',
+        alignItems: 'flex-start',
         flexWrap: 'wrap'
     },
     square: {
@@ -36,9 +38,12 @@ const styles = StyleSheet.create({
         opacity: 0.4,
         borderRadius: 5,
         marginRight: 15,
+        alignItems: 'flex-end',
     },
     itemText: {
         maxWidth: '80%',
+        justifyContent: 'flex-end',
+        alignItems: 'center',
     },
     circular: {
         width: 12,
